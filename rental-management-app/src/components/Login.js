@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';
-
+import './Login.css'; // Import the CSS file
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -19,54 +18,58 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement sign-in logic here
+    // Implement login logic here
     // For demonstration purposes, let's just log the form data
     console.log(formData);
   };
 
   return (
-    <div className="login-page">
-      <h2>Welcome to Rental Management System</h2>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username or Email:</label>
+    <div className="container" id="container">
+      <div className="form-container sign-in-container">
+        <form onSubmit={handleSubmit}>
+          <h5>Welcome To Rental Management System</h5>
+          <h1>Login</h1>
           <input
             type="text"
-            id="username"
+            placeholder="Username or Email"
             name="username"
             value={formData.username}
             onChange={handleChange}
-            required
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
           <input
             type="password"
-            id="password"
+            placeholder="Password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="role">Login as:</label>
           <select
-            id="role"
             name="role"
             value={formData.role}
             onChange={handleChange}
-            required
           >
             <option value="admin">Admin</option>
             <option value="landlord">Landlord</option>
             <option value="tenant">Tenant</option>
           </select>
+          <button type="submit">Sign In</button>
+          <a href="#">Forgot your password?</a>
+        </form>
+      </div>
+      <div className="overlay-container">
+        <div className="overlay">
+          <div className="overlay-panel overlay-left">
+            <h2>Welcome Back!</h2>
+            <p>To keep connected with us please login with your personal info</p>
+            <button className="ghost" id="signIn">Sign In</button>
+          </div>
+          <div className="overlay-panel overlay-right">
+            <h2>Hello, Friend!</h2>
+            <p>Enter your personal details and start journey with us</p>
+            <button className="ghost" id="signUp">Sign Up</button>
+          </div>
         </div>
-        <button type="submit">Sign In</button>
-      </form>
+      </div>
     </div>
   );
 }
