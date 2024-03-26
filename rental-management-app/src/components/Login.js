@@ -8,6 +8,8 @@ function Login() {
     role: 'admin' // Default role selection
   });
 
+  const [isSignUp, setIsSignUp] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -23,8 +25,12 @@ function Login() {
     console.log(formData);
   };
 
+  const handleToggleForm = () => {
+    setIsSignUp(prevState => !prevState);
+  };
+
   return (
-    <div className="container" id="container">
+    <div className={`container ${isSignUp ? 'right-panel-active' : ''}`} id="container">
       <div className="form-container sign-in-container">
         <form onSubmit={handleSubmit}>
           <h5>Welcome To Rental Management System</h5>
@@ -61,12 +67,12 @@ function Login() {
           <div className="overlay-panel overlay-left">
             <h2>Welcome Back!</h2>
             <p>To keep connected with us please login with your personal info</p>
-            <button className="ghost" id="signIn">Sign In</button>
+            <button className="ghost" id="signIn" onClick={handleToggleForm}>Sign In</button>
           </div>
           <div className="overlay-panel overlay-right">
             <h2>Hello, Friend!</h2>
             <p>Enter your personal details and start journey with us</p>
-            <button className="ghost" id="signUp">Sign Up</button>
+            <button className="ghost" id="signUp" onClick={handleToggleForm}>Sign Up</button>
           </div>
         </div>
       </div>
